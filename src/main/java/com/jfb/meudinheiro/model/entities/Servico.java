@@ -1,7 +1,6 @@
-package com.jfb.meudinheiro.model.entity;
+package com.jfb.meudinheiro.model.entities;
 
 import lombok.Data;
-import org.hibernate.metamodel.model.domain.IdentifiableDomainType;
 
 import javax.persistence.*;
 import java.io.Serializable;
