@@ -1,6 +1,9 @@
 package com.jfb.meudinheiro.model.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,6 +11,9 @@ import java.time.LocalDate;
 
 @Entity
 @Data // <- Lombok
+@NoArgsConstructor // <- Lombok: Criar o construtor sem argumentos.
+@AllArgsConstructor // <- Lombok: Criar o construtor com argumentos.
+@Builder // <- Lombok: Para ter um builder de cliente.
 public class Cliente implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -23,5 +29,10 @@ public class Cliente implements Serializable {
 
     @Column(name = "data_cadastro")
     private LocalDate dataCadastro;
+
+    @PrePersist // Anotação para fazer alguma coisa antes de persistir os dados.
+    public void prePersist() {
+        setDataCadastro(LocalDate.now());
+    }
 
 }
