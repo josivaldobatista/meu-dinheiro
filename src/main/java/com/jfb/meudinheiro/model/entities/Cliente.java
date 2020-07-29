@@ -1,5 +1,6 @@
 package com.jfb.meudinheiro.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,6 +29,7 @@ public class Cliente implements Serializable {
     private String cpf;
 
     @Column(name = "data_cadastro")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataCadastro;
 
     @PrePersist // Anotação para fazer alguma coisa antes de persistir os dados.
