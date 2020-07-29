@@ -25,10 +25,12 @@ public class Cliente implements Serializable {
     @Column(nullable = false, length = 150)
     private String nome;
 
-    @Column(nullable = false, length = 11)
+    // O "updatable=false" evita que o campo seja modificado pelo método update.
+    @Column(nullable = false, length = 11, updatable = false)
     private String cpf;
 
-    @Column(name = "data_cadastro")
+    // O "updatable=false" evita que o campo seja modificado pelo método update.
+    @Column(name = "data_cadastro", updatable = false)
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataCadastro;
 
