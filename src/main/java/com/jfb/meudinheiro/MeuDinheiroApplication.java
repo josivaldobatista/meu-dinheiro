@@ -14,10 +14,7 @@ public class MeuDinheiroApplication {
 	@Bean
 	public CommandLineRunner run(@Autowired ClienteRepository repository) {
 		return args -> {
-			Cliente cliente = Cliente.builder()
-					.cpf("76392763066")
-					.nome("Ana Clara Batista")
-					.build();
+			Cliente cliente = new Cliente(null, "Maria Clara Batista", "96136026074", null);
 			repository.save(cliente);
 		};
 	}
