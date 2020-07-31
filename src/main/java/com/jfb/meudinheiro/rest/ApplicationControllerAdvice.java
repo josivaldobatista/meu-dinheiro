@@ -28,7 +28,8 @@ public class ApplicationControllerAdvice {
         return new ApiErrors(messages);
     }
 
-    @ExceptionHandler(ResponseStatusException.class)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	@ExceptionHandler(ResponseStatusException.class)
     public ResponseEntity handleResponseStatusException(ResponseStatusException ex) {
         String mensagemErro = ex.getMessage();
         HttpStatus codigoStatus = ex.getStatus();

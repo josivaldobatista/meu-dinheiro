@@ -32,5 +32,6 @@ build/
 ### VS Code ###
 .vscode/
 
-### Outros ###
+### System Files ###
 .DS_Store
+Thumbs.db
