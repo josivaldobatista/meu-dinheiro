@@ -22,46 +22,41 @@ public class ClienteController {
     }
 
     @GetMapping
-    public List<Cliente> obterTodos(){
+    public List<Cliente> obterTodos() {
         return repository.findAll();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente salvar(@Valid @RequestBody Cliente cliente ){
+    public Cliente salvar(@Valid @RequestBody Cliente cliente) {
         return repository.save(cliente);
     }
 
     @GetMapping("{id}")
-    public Cliente acharPorId( @PathVariable Integer id ){
-        return repository
-                .findById(id)
-                .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado") );
+    public Cliente acharPorId(@PathVariable Integer id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    "Cliente não encontrado"));
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletar( @PathVariable Integer id ){
-        repository
-                .findById(id)
-                .map( cliente -> {
-                    repository.delete(cliente);
-                    return Void.TYPE;
-                })
-                .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado") );
+    public void deletar(@PathVariable Integer id) {
+        repository.findById(id).map(cliente -> {
+            repository.delete(cliente);
+            return Void.TYPE;
+        }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+            "Cliente não encontrado"));
     }
 
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void atualizar( @PathVariable Integer id,
-                           @Valid @RequestBody Cliente clienteAtualizado ) {
-        repository
-                .findById(id)
-                .map( cliente -> {
-                    cliente.setNome(clienteAtualizado.getNome());
-                    cliente.setCpf(clienteAtualizado.getCpf());
-                    return repository.save(cliente);
-                })
-                .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado") );
+    public void atualizar(@PathVariable Integer id, @Valid @RequestBody Cliente clienteAtualizado) {
+        repository.findById(id).map(cliente -> {
+            cliente.setNome(clienteAtualizado.getNome());
+            cliente.setCpf(clienteAtualizado.getCpf());
+            return repository.save(cliente);
+        }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+            "Cliente não encontrado"));
     }
 }
