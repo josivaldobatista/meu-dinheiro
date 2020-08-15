@@ -19,7 +19,7 @@ public class MeuDinheiroApplication {
 	public CommandLineRunner run(@Autowired ClienteRepository repository) {
 		return args -> {
 			Cliente cliente = new Cliente(null, "Maria Clara Batista",
-					"96136026074", null);
+					"96136026074", null); 
 			repository.save(cliente);
 		};
 	}
