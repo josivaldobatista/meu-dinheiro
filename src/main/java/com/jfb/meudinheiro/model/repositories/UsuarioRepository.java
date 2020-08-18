@@ -11,4 +11,6 @@ import com.jfb.meudinheiro.model.entities.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario	, Integer> {
 	
 	Optional<Usuario> findByUsuario(String usuario);
+
+	boolean existsByUsuario(String usuario);
 }
